@@ -18,22 +18,22 @@
 /*! \def SUPPORTED_EXTENSION
 \brief The extension that can be analyze with the static method Load"()".
 */
-#define SUPPORTED_EXTENSION "csv" /* The supported extension to be loaded in the program.*/
-#define SPLIT_CHAR "," /* The character delimiting the columns in the SUPPORTED_EXTENSION extension. */
-#define SPLIT_CHAR_IN_COLUMN ";" /* The character delimiting the different data in the right column.*/
-#define NORMAL_PREFIX "ENSG" /* The usual prefix of the ensembles. */
-#define OUTPUT_SUFFIX "_extract" /* The default suffix of the output file. */
-#define OUTPUT_EXTENSION ".txt" /* The default extension of the output file. */
+const std::string SUPPORTED_EXTENSION = "csv"; /* The supported extension to be loaded in the program.*/
+const char SPLIT_CHAR = ','; /* The character delimiting the columns in the SUPPORTED_EXTENSION extension. */
+const char SPLIT_CHAR_IN_COLUMN = ';'; /* The character delimiting the different data in the right column.*/
+const std::string NORMAL_PREFIX = "ENSG"; /* The usual prefix of the ensembles. */
+const std::string OUTPUT_SUFFIX = "_extract"; /* The default suffix of the output file. */
+const std::string OUTPUT_EXTENSION = ".txt"; /* The default extension of the output file. */
 
 //ERROR MESSAGES
-#define ERROR_MESSAGE_FILE_DO_NOT_EXISTS "Error : input file doesn't exists."
-#define ERROR_MESSAGE_WRONG_FORMAT_1 "Error : thank you to convert the file into '."
-#define ERROR_MESSAGE_WRONG_FORMAT_2 "'."
-#define ERROR_MESSAGE_NO_ENSEMBLE_FOUND_1 "Error : No ensembles found in the given column ("
-#define ERROR_MESSAGE_NO_ENSEMBLE_FOUND_2 ") of the given file.\n"
-#define ERROR_MESSAGE_NOT_ENOUGH_COLUMNS_1 "Error : Not enough columns found in the given file ("
-#define ERROR_MESSAGE_NOT_ENOUGH_COLUMNS_2 ") to reach the specified column ("
-#define ERROR_MESSAGE_NOT_ENOUGH_COLUMNS_3 ")."
+const std::string ERROR_MESSAGE_FILE_DO_NOT_EXISTS = "Error : input file doesn't exists.";
+const std::string ERROR_MESSAGE_WRONG_FORMAT_1 = "Error : thank you to convert the file into '.";
+const std::string ERROR_MESSAGE_WRONG_FORMAT_2 = "'.";
+const std::string ERROR_MESSAGE_NO_ENSEMBLE_FOUND_1 = "Error : No ensembles found in the given column (";
+const std::string ERROR_MESSAGE_NO_ENSEMBLE_FOUND_2 = ") of the given file.\n";
+const std::string ERROR_MESSAGE_NOT_ENOUGH_COLUMNS_1 = "Error : Not enough columns found in the given file (";
+const std::string ERROR_MESSAGE_NOT_ENOUGH_COLUMNS_2 = ") to reach the specified column (";
+const std::string ERROR_MESSAGE_NOT_ENOUGH_COLUMNS_3 = ").";
 
 /*! \class Load
   * \brief Class representing the loading.
@@ -58,7 +58,7 @@ public:
      *  \return if shouldWriteInAFile == true : A vector containing one string : the path of the resulting output file.
      * if shouldWriteInAFile == false : A string vector containing each one of the ensemble found.
      */
-    static std::vector<std::string> loadAFile(std::string const& path, bool const shouldWriteInAFile=DEFAULT_PARAM_SHOULD_USE_ROM, int const column=DEFAULT_PARAM_LOAD_COLUMN);
+    static std::vector<std::string> loadAFile(std::string const& path, bool const shouldWriteInAFile=DEFAULT_PARAM_SHOULD_USE_ROM, unsigned int const column=DEFAULT_PARAM_LOAD_COLUMN);
 
 private:
 	/*!
