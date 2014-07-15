@@ -3,7 +3,7 @@
 using namespace std;
 
 
-vector<vector<string>> & Download::downloadEnsembles(vector<string> const& ensList)
+vector<vector<string>> Download::downloadEnsembles(vector<string> const& ensList)
 {
 	vector<vector<string>> result;
 	vector<string> outOfMemory, downloadFailure;
@@ -50,8 +50,12 @@ vector<vector<string>> & Download::downloadEnsembles(vector<string> const& ensLi
 	}
 	remove(fileName.c_str());
 
-	result.push_back(outOfMemory);
-	result.push_back(downloadFailure);
+	if (!outOfMemory.empty() || !downloadFailure.empty())
+	{
+		result.push_back(outOfMemory);
+		result.push_back(downloadFailure);
+	}
+
 	return result;
 }
 

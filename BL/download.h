@@ -57,7 +57,7 @@ public:
 	*	-first element : list of the ensembles which have thrown a "OUT OF MEMORY" exception during downloading.
 	*   -second element : list of the ensembles which have thrown a "DOWNLOAD FAILURE" exception during downloading.
 	*/
-	static std::vector<std::vector<std::string>> & downloadEnsembles(std::vector<std::string> const& ensList);
+	static std::vector<std::vector<std::string>> downloadEnsembles(std::vector<std::string> const& ensList);
 private:
 	static void downloadFile(std::string const& url, std::string const& dest, bool shouldAppend=false);
 	static void appendFile(std::string const& nameFileIn, std::ofstream & nameFileOut);

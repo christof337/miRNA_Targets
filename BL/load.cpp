@@ -4,12 +4,12 @@ using namespace std;
 
 vector<string> Load::loadAFile(string const& path, bool const shouldWriteInAFile, unsigned int const column)
 {
-	ifstream input(path);	/* Input file to be loaded. */
+	ifstream input(path.c_str());	/* Input file to be loaded. */
 	vector<string> res;		/* Output of this function. */
 	string outputFileName(utils::appendTextBeforeExtension(path, OUTPUT_SUFFIX)); /* Name of the output file. */
 	outputFileName = outputFileName.substr(0, outputFileName.length() - utils::getExtension(outputFileName).length() - 1) + OUTPUT_EXTENSION; //remove the old extension
 	//add the new extension
-	ofstream output(outputFileName);	/* Output file to be written in if shouldWriteInAFile is true. */
+	ofstream output(outputFileName.c_str());	/* Output file to be written in if shouldWriteInAFile is true. */
     string str,ens;
 	bool isEnoughColumns(false); /* Used to know if there is enough columns in the given file.*/
 	bool isEnsemblesInFile(false); /* Used to know if there is ensembles in the given file at the given column.*/
@@ -89,12 +89,12 @@ vector<string> Load::loadAFile(string const& path, bool const shouldWriteInAFile
             }
 			if (!isEnoughColumns)	//if not enough column in the file (wrong format)
 			{
-				str = ERROR_MESSAGE_NOT_ENOUGH_COLUMNS_1 + path + ERROR_MESSAGE_NOT_ENOUGH_COLUMNS_2 + utils::convertInt(column) + ERROR_MESSAGE_NOT_ENOUGH_COLUMNS_3;
+				str = ERROR_MESSAGE_NOT_ENOUGH_COLUMNS_1 + path + ERROR_MESSAGE_NOT_ENOUGH_COLUMNS_2 + utils::convertToString<int>(column) + ERROR_MESSAGE_NOT_ENOUGH_COLUMNS_3;
 				throw str;
 			}
 			if (!isEnsemblesInFile)//if no ensemble found (wrong column or file)
 			{
-				str = ERROR_MESSAGE_NO_ENSEMBLE_FOUND_1 + utils::convertInt(column) + ERROR_MESSAGE_NO_ENSEMBLE_FOUND_2 + path;
+				str = ERROR_MESSAGE_NO_ENSEMBLE_FOUND_1 + utils::convertToString<int>(column) +ERROR_MESSAGE_NO_ENSEMBLE_FOUND_2 + path;
 				throw str;
 			}
         }
