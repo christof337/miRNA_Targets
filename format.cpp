@@ -2,16 +2,20 @@
 
 using namespace std;
 
+/* constants definitions */
+const string Format::CONST_SUFFIX_FILE_OUT = "_format";		//the default suffix of the output file
+//const std::string Format::DEFAULT_HEADER_LINE = " range=chr19:44430527-44430726 5'pad=100 3'pad=100 strand=+ repeatMasking=none";
+const string Format::DEFAULT_HEADER_LINE = "";				//the default header line (only if needed)
+//const string Format::PATTERN_FILTER = "utr3";				//the pattern filter (only the header containing it should be taken). Not used in fact.
+
+
 /**
 fileIn doit être ouvert en lecture et fileOut en écriture
 */
 int Format::formatFileInIntoFileOut(ifstream & fileIn, ofstream & fileOut)
 {
-	bool flagIsHeader(false);
-	bool isWrongSequence(true);
-	char currentChar(0);
-	string ensName;
-	string line;
+    bool flagIsHeader(false);
+    char currentChar(0);
 
 	if (fileIn&&fileOut)
 	{
@@ -20,7 +24,7 @@ int Format::formatFileInIntoFileOut(ifstream & fileIn, ofstream & fileOut)
 			currentChar = fileIn.get();	//read one character
 			if (fileIn.good())
 			{
-				if (currentChar == CHAR_BEGIN_HEADER_LINE)
+                if (currentChar == Settings::getSettings()->getLoad_charBeginHeaderLine())
 				{
 					//begin of header
 					fileOut << endl;
@@ -47,7 +51,7 @@ int Format::formatFileInIntoFileOut(ifstream & fileIn, ofstream & fileOut)
 	}
 }
 
-int Format::formatFile(string fileName)
+int Format::formatFile(string const& fileName)
 {
 	int res(-1);
 	string nameFileOut(utils::appendTextBeforeExtension(fileName, CONST_SUFFIX_FILE_OUT));

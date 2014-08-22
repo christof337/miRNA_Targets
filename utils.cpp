@@ -77,3 +77,24 @@ string utils::toLower(string str)
 	std::transform(str.begin(), str.end(), str.begin(), ::tolower);
 	return str;
 }
+
+string utils::toUpper(string str)
+{
+	std::transform(str.begin(), str.end(), str.begin(), ::toupper);
+	return str;
+}
+
+
+string utils::getName(string const& path){
+    vector<string> res1 = utils::splitString(path, '/');
+	//remove extension of file, for exemple ".csv"
+	vector<string> res2 = utils::splitString(res1[res1.size() - 1], '.');
+        return res2[0];
+}
+
+bool utils::isFileExisting(string const& nameFile){
+    //QFile file("nameFile"m);
+    QFile file(nameFile.c_str());
+    // if return true, the file exists
+   return file.exists();
+}
